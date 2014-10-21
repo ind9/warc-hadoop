@@ -44,6 +44,7 @@ public class WARCFileWriter {
     private long segmentsCreated = 0, segmentsAttempted = 0, bytesWritten = 0;
     private CountingOutputStream byteStream;
     private DataOutputStream dataStream;
+    private String fileName;
 
     /**
      * Creates a WARC file, and opens it for writing. If a file with the same name already
@@ -119,6 +120,7 @@ public class WARCFileWriter {
 
         while (!success) {
             Path path = workOutputPath.suffix(String.format(extensionFormat, segmentsCreated, segmentsAttempted));
+            fileName = path.toString();
             FileSystem fs = path.getFileSystem(conf);
 
             try {
@@ -202,6 +204,6 @@ public class WARCFileWriter {
     }
 
     public String getFileName() {
-        return workOutputPath.suffix(String.format(extensionFormat, segmentsCreated, segmentsAttempted)).toString();
+        return fileName;
     }
 }

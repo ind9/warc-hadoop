@@ -35,10 +35,18 @@ public class WARCOutputFormat extends FileOutputFormat<NullWritable, WARCWritabl
     /**
      * Creates a new output file in WARC format, and returns a RecordWriter for writing to it.
      */
+
+    private WARCWriter warcWriter;
+
     @Override
     public RecordWriter<NullWritable, WARCWritable> getRecordWriter(FileSystem fs, JobConf job, String filename,
                                                                     Progressable progress) throws IOException {
-        return new WARCWriter(job, filename, progress);
+        warcWriter = new WARCWriter(job, filename, progress);
+        return warcWriter;
+    }
+
+    public String getFileName() {
+        return warcWriter.getFileName();
     }
 
     private static class WARCWriter implements RecordWriter<NullWritable, WARCWritable> {
