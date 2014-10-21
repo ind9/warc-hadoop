@@ -59,5 +59,9 @@ public class WARCOutputFormat extends FileOutputFormat<NullWritable, WARCWritabl
         public void close(Reporter reporter) throws IOException {
             writer.close();
         }
+
+        public String getFileName() {
+            return writer.getFileName();
+        }
     }
 }

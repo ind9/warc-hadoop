@@ -58,5 +58,9 @@ public class WARCOutputFormat extends FileOutputFormat<NullWritable, WARCWritabl
         public void close(TaskAttemptContext context) throws IOException, InterruptedException {
             writer.close();
         }
+
+        public String getFileName() {
+            return writer.getFileName();
+        }
     }
 }

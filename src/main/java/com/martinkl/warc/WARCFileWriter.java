@@ -198,5 +198,10 @@ public class WARCFileWriter {
         public void close() throws IOException {
             out.close();
         }
+
+    }
+
+    public String getFileName() {
+        return workOutputPath.suffix(String.format(extensionFormat, segmentsCreated, segmentsAttempted)).toString();
     }
 }
