@@ -70,7 +70,7 @@ public class WARCInputFormat extends FileInputFormat<LongWritable, WARCWritable>
         public boolean next(LongWritable key, WARCWritable value) throws IOException {
             try {
                 WARCRecord record = reader.read();
-                key.set(reader.getRecordsRead());
+                key.set(reader.getBytesRead());
                 value.setRecord(record);
                 return true;
             } catch (EOFException eof) {
